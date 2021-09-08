@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import useInsights from '../lib/main'
 
 function App() {
   const [count, setCount] = useState(0)
+  useInsights()
 
   return (
     <div className="App">
