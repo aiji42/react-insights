@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import path from 'path'
-import typescript from 'rollup-plugin-typescript2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,11 +21,5 @@ export default defineConfig({
       }
     }
   },
-  plugins: [
-    reactRefresh(),
-    {
-      ...typescript({ tsconfig: './tsconfig.build.json' }),
-      apply: 'build'
-    }
-  ]
+  plugins: [reactRefresh()]
 })

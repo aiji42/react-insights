@@ -1,16 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { ComponentType, useEffect, useRef } from 'react'
 
-export const useInsights = (name?: string): void => {
+export const useInsights = (component: ComponentType): void => {
   const mounted = useRef(false)
   useEffect(() => {
-    mounted.current && console.log(`${name ?? ''}: updated.`)
+    mounted.current &&
+      console.log(`${component.displayName ?? component.name}: updated.`)
   })
 
   useEffect(() => {
-    !mounted.current && console.log(`${name ?? ''}: mounted.`)
+    !mounted.current &&
+      console.log(`${component.displayName ?? component.name}: mounted.`)
     mounted.current = true
     return () => {
-      console.log(`${name ?? ''}: unmounted.`)
+      console.log(`${component.displayName ?? component.name}: unmounted.`)
     }
   }, [])
 }
