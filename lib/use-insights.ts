@@ -1,21 +1,21 @@
 import { ComponentType, useEffect, useRef } from 'react'
-import { useInsightsProvider } from './InsightsProvider'
+import { useInsightsProvider } from './use-insights-provider'
 
 export const useInsights = (component: ComponentType): void => {
-  const { push } = useInsightsProvider()
+  const { onUpdated, onUnmounted, onMounted } = useInsightsProvider(
+    component.displayName ?? component.name
+  )
   const mounted = useRef(false)
   useEffect(() => {
-    mounted.current &&
-      push({ name: component.displayName ?? component.name, type: 'UPDATED' })
+    mounted.current && onUpdated()
   })
 
   useEffect(() => {
-    !mounted.current &&
-      push({ name: component.displayName ?? component.name, type: 'MOUNTED' })
+    !mounted.current && onMounted()
 
     mounted.current = true
     return () => {
-      push({ name: component.displayName ?? component.name, type: 'UNMOUNTED' })
+      onUnmounted()
     }
   }, [])
 }

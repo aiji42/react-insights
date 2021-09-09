@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, VFC } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import useInsights from '../lib/main'
@@ -10,6 +10,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {count % 3 === 0 && <ComponentFirst />}
+        {count % 3 === 1 && <ComponentFirst />}
+        {count % 3 === 2 && <ComponentSecond />}
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
@@ -45,3 +48,13 @@ function App() {
 }
 
 export default App
+
+const ComponentFirst: VFC = () => {
+  useInsights(ComponentFirst)
+  return null
+}
+
+const ComponentSecond: VFC = () => {
+  useInsights(ComponentSecond)
+  return null
+}
