@@ -55,6 +55,6 @@ const ComponentFirst: VFC = () => {
 }
 
 const ComponentSecond: VFC = () => {
-  useInsights(ComponentSecond)
+  useInsights('ComponentSecond')
   return null
 }
